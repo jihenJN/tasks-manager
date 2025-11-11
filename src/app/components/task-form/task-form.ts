@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormControlName, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { TaskService } from '../../services/task-service';
 @Component({
   selector: 'app-task-form',
   imports: [ReactiveFormsModule],
@@ -7,12 +8,15 @@ import { FormControl, FormControlName, FormGroup, ReactiveFormsModule } from '@a
   styleUrl: './task-form.css',
 })
 export class TaskForm {
+  taskService = inject(TaskService)
   taskForm = new FormGroup({
     task: new FormControl('', { nonNullable: true }),
     status: new FormControl('todo', { nonNullable: true }),
   });
 
   onSubmit(){
-    console.log(this.taskForm.getRawValue())
+    const rawValue=this.taskForm.getRawValue();
+    this.taskService.addTask(rawValue.task,rawValue.status);
+    this.taskForm.reset();
   }
 }
