@@ -1,10 +1,10 @@
-<form>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="task" class="block">task</label>
-    <textarea name="task" id="task" class="w-full bg-slate-100 border border-slate-200 rounded h-20"></textarea>
+    <textarea name="task" id="task" formControlName="task" class="w-full bg-slate-100 border border-slate-200 rounded h-20"></textarea>
   </div>
   <div>
-    <select class="w-full bg-slate-100 border border-slate-200 rounded">
+    <select  formControlName="status" class="w-full bg-slate-100 border border-slate-200 rounded" >
       <option value="todo">To Do</option>
       <option value="inprogess">In Progress</option>
       <option value="completed"> Completed</option>
