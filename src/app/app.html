@@ -2,8 +2,9 @@
   <h1 class="text-3xl font-bold text-center p-4">Tasks-Manager</h1>
   <div class="grid grid-cols-4 px-4">
     <app-task-form></app-task-form>
-    <app-task-list></app-task-list>
-    <app-task-list></app-task-list>
-    <app-task-list></app-task-list>
+    <app-task-list [tasks]="todoItems()" [heading]="'Todo'"></app-task-list>
+    <app-task-list [tasks]=" inProgressItems()" [heading]="'In Progress'"></app-task-list>
+    <app-task-list [tasks]="CompletedItems()" [heading]="'Completed'"></app-task-list>
   </div>
+
 </div>

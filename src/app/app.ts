@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { TaskService } from './services/task-service';
+import { Component, computed, inject, signal } from '@angular/core';
 import { TaskForm } from './components/task-form/task-form';
 import { TaskList } from './components/task-list/task-list';
 
@@ -10,5 +11,22 @@ import { TaskList } from './components/task-list/task-list';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('task-manager');
+  taskService = inject(TaskService)
+  tasks=this.taskService.tasks
+
+  todoItems = computed(()=>{
+    const tasks=this.tasks();
+    return tasks.filter((el)=>el.status==='todo')
+  })
+
+  inProgressItems=computed(()=>{
+     const tasks=this.tasks();
+    return tasks.filter((el)=>el.status==='inprogress')
+  })
+
+   CompletedItems=computed(()=>{
+     const tasks=this.tasks();
+    return tasks.filter((el)=>el.status==='completed')
+  })
+
 }
