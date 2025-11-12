@@ -2,7 +2,7 @@
   {{task().task}}
   <div>
     @for (action of actions(); track $index) {
-    <button class="bg-amber-500 rounded px-2 py-1 m-1 text-xs border border-amber-900 cursor-pointer">{{action}}</button>
+    <button (click)="markAs(task().task,action)" class="bg-amber-500 rounded px-2 py-1 m-1 text-xs border border-amber-900 cursor-pointer">{{action}}</button>
     }
   </div>
 </div>

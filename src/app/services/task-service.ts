@@ -12,5 +12,16 @@ export class TaskService {
       return [...previousState, { task, status }];
     });
   }
+
+  markAsStatus(text: string, updatedStatus: string){
+    this.tasks.update((existingCollection)=>{
+     const taskExists= existingCollection.find((x)=>x.task===text)
+      if(taskExists){
+        return  [...existingCollection.filter((x)=>x.task !== text), {task:text, status:updatedStatus}]
+      }
+        return existingCollection
+
+    })
+  }
 }
 
